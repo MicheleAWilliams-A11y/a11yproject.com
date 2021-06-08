@@ -55,6 +55,7 @@ var paths = {
 // Gulp Packages //////////////////////////////////////////////////////////////
 
 // General
+var Fiber = require('fibers');
 var { src, dest, watch, series, parallel, lastRun } = require('gulp');
 var kss = require('kss');
 var rename = require('gulp-rename');
@@ -131,6 +132,7 @@ var buildStyles = function (done) {
 	// Run tasks on all Sass files
 	return src(paths.styles.input)
 		.pipe(sass({
+			fiber: Fiber,
 			outputStyle: 'expanded',
 			sourceComments: true
 		}))
